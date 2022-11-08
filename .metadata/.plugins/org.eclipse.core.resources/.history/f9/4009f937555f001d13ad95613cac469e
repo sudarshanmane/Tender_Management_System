@@ -1,0 +1,7 @@
+package com.tms.dao;
+
+public interface Administrator {
+
+	public String administratorLogin(String email,String pasword);
+	
+}

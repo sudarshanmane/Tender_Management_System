@@ -1,0 +1,11 @@
+package com.tms.dao;
+
+public class AdministratorDaoImlp implements AdministratorDao{
+
+	@Override
+	public String administratorLogin(String email, String pasword) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

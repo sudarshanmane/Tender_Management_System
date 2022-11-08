@@ -1,0 +1,13 @@
+package com.tms.usecases;
+
+import com.tms.dao.AdministratorDao;
+
+public class AdministratorLogin {
+	
+	public static void main(String[] args) {
+		
+		AdministratorDao dao = new AdministratorDaoI();
+		
+	}
+
+}

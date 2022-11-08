@@ -1,0 +1,28 @@
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import com.tms.dbconnection.GetConnection;
+import com.tms.exceptions.TenderManagementSystemException;
+
+String message = "We cannot find your account ";
+		
+		try(Connection conn = GetConnection.provideConnection()) {
+//			
+			PreparedStatement ps = conn.prepareStatement("select * from administrator");
+			ResultSet rs = ps.executeQuery();
+			
+			if(rs.getString("adminemail").equals(email) && rs.getString("password").equals(password)) {
+				message
+				
+				Login Successful";
+			}else {
+				throw new TenderManagementSystemException(message);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+//		return message;

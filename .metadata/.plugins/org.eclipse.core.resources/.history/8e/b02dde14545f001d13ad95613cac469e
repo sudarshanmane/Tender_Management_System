@@ -1,0 +1,13 @@
+package com.tms.dao;
+
+import com.tms.exceptions.TenderManagementSystemException;
+
+public class AdministratorImpl implements AdministratorDao{
+
+	@Override
+	public String administrativeLogin(String email, String password) throws TenderManagementSystemException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

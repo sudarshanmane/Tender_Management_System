@@ -1,0 +1,7 @@
+package com.tms.dao;
+
+import com.tms.model.Administrator;
+
+public class AdministrativeDaoImpl extends AdministratorDao{
+
+}

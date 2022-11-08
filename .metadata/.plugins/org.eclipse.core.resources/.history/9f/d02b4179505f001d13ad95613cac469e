@@ -1,0 +1,5 @@
+package com.tms.dao;
+
+public class AdministrativeDaoImpl {
+
+}
