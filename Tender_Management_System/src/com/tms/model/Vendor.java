@@ -8,6 +8,7 @@ public class Vendor {
 	private String venemail;
 	private String vencompany;
 	private String venpassword;
+	
 	public int getVenid() {
 		return venid;
 	}
@@ -46,8 +47,8 @@ public class Vendor {
 	}
 	@Override
 	public String toString() {
-		return "Vendor [venid=" + venid + ", Venname=" + Venname + ", venmobile=" + venmobile + ", venemail=" + venemail
-				+ ", vencompany=" + vencompany + ", venpassword=" + venpassword + "]";
+		return "vendor id = " + venid + ", vendor name = " + Venname + ", vendor mobile = " + venmobile + ", vendor email = " + venemail
+				+ ", vendor company = " + vencompany + ", vendor password = " + venpassword ;
 	}
 	public Vendor(int venid, String venname, String venmobile, String venemail, String vencompany, String venpassword) {
 		super();
@@ -60,6 +61,7 @@ public class Vendor {
 	}
 	
 	public Vendor() {
+	
 	}
 
 }

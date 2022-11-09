@@ -35,6 +35,7 @@ public class Administrator {
 		return "Administrator [adminname=" + adminname + ", adminaddress=" + adminaddress + ", adminemail=" + adminemail
 				+ ", adminpassword=" + adminpassword + "]";
 	}
+	
 	public Administrator(String adminname, String adminaddress, String adminemail, String adminpassword) {
 		super();
 		this.adminname = adminname;

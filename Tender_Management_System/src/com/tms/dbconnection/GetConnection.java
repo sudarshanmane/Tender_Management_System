@@ -15,7 +15,6 @@ public class GetConnection {
 				e.printStackTrace();
 			}
 			
-			
 			String url = "jdbc:mysql://localhost:3306/tms";
 			
 			Connection conn  = null;
