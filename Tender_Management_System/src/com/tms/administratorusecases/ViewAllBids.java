@@ -1,6 +1,7 @@
 package com.tms.administratorusecases;
 
 import java.util.List;
+import java.util.Scanner;
 
 import com.tms.dao.AdministratorDao;
 import com.tms.dao.AdministratorDaoImlp;
@@ -12,14 +13,33 @@ public class ViewAllBids {
 	
 	public static void main(String[] args) {
 		
-		AdministratorDao dao = new AdministratorDaoImlp();
 		
-		try {
-			List<Bid> list = dao.viewAllBids();
-			list.forEach(i -> System.out.println(list));
-		} catch (TenderManagementSystemException e) {
-			e.printStackTrace();
+		try (Scanner sc = new Scanner(System.in)) {
+			System.out.println("Enter 3 to view all Bids");
+			System.out.println("------------------------------------------------");
+			int num = sc.nextInt();
+			if(num == 3) {
+				AdministratorDao dao = new AdministratorDaoImlp();
+				
+				try {
+					List<Bid> list = dao.viewAllBids();
+					list.forEach(i -> System.out.println(i));
+				} catch (TenderManagementSystemException e) {
+					e.printStackTrace();
+				}
+			}
+			
+			
+			else {
+				System.out.println("Please enter the correct number");
+			}
+		}catch (Exception e) {
+			System.out.println("Please enter the correct number");
 		}
+		
+		
+		
+		
 	}
 
 }

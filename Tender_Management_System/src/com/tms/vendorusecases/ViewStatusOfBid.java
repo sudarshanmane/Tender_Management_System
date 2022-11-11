@@ -12,8 +12,12 @@ public class ViewStatusOfBid {
 	
 	public static void main(String[] args) {
 		
-		Scanner sc = new Scanner(System.in);
-		
+		try (Scanner sc = new Scanner(System.in)) {
+			System.out.println("Enter 5 to view status of Tender");
+			System.out.println("------------------------------------------------");
+			int num = sc.nextInt();
+			if(num == 5) {
+				
 		System.out.println("Enter vendor id");
 		int vid = sc.nextInt();
 		
@@ -23,6 +27,12 @@ public class ViewStatusOfBid {
 			System.out.println(message);
 		} catch (TenderManagementSystemException e) {
 			e.printStackTrace();
+		}
+			}else {
+				System.out.println("Please enter the correct number");
+			}
+		}catch (Exception e) {
+			System.out.println("Please enter the correct number");
 		}
 		
 	}

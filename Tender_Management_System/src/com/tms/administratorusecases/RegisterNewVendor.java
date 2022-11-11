@@ -11,7 +11,12 @@ public class RegisterNewVendor {
 	
 	public static void main(String[] args) {
 		
+		
 		try (Scanner sc = new Scanner(System.in)) {
+			
+			System.out.println("Enter the following details to register new vendor");
+			System.out.println("------------------------------------------------");
+			
 			System.out.println("Enter Vendor id");
 			int venid = sc.nextInt();
 			
@@ -40,9 +45,9 @@ public class RegisterNewVendor {
 			} catch (TenderManagementSystemException e) {
 				e.printStackTrace();
 			}
-		}
-		
-			
+		}catch (Exception e) {
+			System.out.println("please enter the correct details");
+		}	
 	}
 
 }

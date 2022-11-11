@@ -1,6 +1,7 @@
 package com.tms.administratorusecases;
 
 import java.util.List;
+import java.util.Scanner;
 
 import com.tms.dao.AdministratorDao;
 import com.tms.dao.AdministratorDaoImlp;
@@ -11,14 +12,24 @@ public class ViewAllVendors {
 	
 	public static void main(String[] args) {
 		
-		AdministratorDao dao = new AdministratorDaoImlp();
-		
-		try {
-			List<Vendor> list = dao.viewAllVendors();
-			list.forEach(i -> System.out.println(list));
-		} catch (TenderManagementSystemException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		try (Scanner sc = new Scanner(System.in)) {
+			System.out.println("Enter 5 to view all Vendors");
+			System.out.println("------------------------------------------------");
+			int num = sc.nextInt();
+			if(num == 5) {
+				AdministratorDao dao = new AdministratorDaoImlp();
+				
+				try {
+					List<Vendor> list = dao.viewAllVendors();
+					list.forEach(i -> System.out.println(i));
+				} catch (TenderManagementSystemException e) {
+					e.printStackTrace();
+				}
+			}else {
+				System.out.println("Please enter the correct number");
+			}
+		}catch (Exception e) {
+			System.out.println("Please enter the correct number");
 		}
 	}
 

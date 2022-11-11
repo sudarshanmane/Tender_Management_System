@@ -15,6 +15,9 @@ public class RegisterBid {
 	public static void main(String[] args) {
 		
 		try (Scanner sc = new Scanner(System.in)) {
+			System.out.println("Enter the following details to Register a bid");
+			System.out.println("----------------------------------------------");
+			
 			System.out.println("Enter bid id");
 			int bidid = sc.nextInt();
 			

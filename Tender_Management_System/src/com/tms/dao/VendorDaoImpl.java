@@ -91,14 +91,13 @@ public class VendorDaoImpl implements VendorDao{
 				
 				if(list.size()==0)
 					throw new TenderManagementSystemException("No tender found");
-				
 
 			return list;
-		}else {
-			throw new TenderManagementSystemException("Please Login As Vendor Before Proceed");
 		}
 				}
-			
+		else {
+			throw new TenderManagementSystemException("Please Login As Vendor Before Proceed");
+		}
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -123,8 +122,6 @@ public class VendorDaoImpl implements VendorDao{
 			if(rs1.next()) {
 			
 				if("Success".equals(rs1.getString("result")))  {
-		
-
 			
 			PreparedStatement ps = conn.prepareStatement("insert into bid values(?,?,?,?)");
 			
@@ -143,9 +140,9 @@ public class VendorDaoImpl implements VendorDao{
 			
 			return message;
 		
-			 }else {
-					throw new TenderManagementSystemException("Please Login As Vendor Before Proceed");
-				}
+			 }
+			}else{
+				throw new TenderManagementSystemException("Please Login As Vendor Before Proceed");
 			}
 						
 			} catch (SQLException e) {
@@ -201,10 +198,10 @@ public class VendorDaoImpl implements VendorDao{
 			
 		return message;
 		
-	 }else {
+	 }
+		}else {
 			throw new TenderManagementSystemException("Please Login As Vendor Before Proceed");
 		}
-				}
 			
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -243,10 +240,10 @@ public class VendorDaoImpl implements VendorDao{
 				
 			return list;
 			
+		}
 		}else {
 			throw new TenderManagementSystemException("Please Login As Vendor Before Proceed");
 		}
-				}
 			
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -259,16 +256,26 @@ public class VendorDaoImpl implements VendorDao{
 	@Override
 	public String vendorLogOut() throws TenderManagementSystemException {
 		
-		String message = " Vendor LogOut Successful";
+		String message = " please login first to LogOut";
 		
-
 		try(Connection conn = GetConnection.provideConnection()) {
 			
-		PreparedStatement ps3 = conn.prepareStatement("truncate table vendorCredentials");
-		int x3 = ps3.executeUpdate();
-		System.out.println(x3);
-
-		
+			PreparedStatement ps4 = conn.prepareStatement("select * from vendorCredentials");
+			
+			ResultSet rs = ps4.executeQuery();
+			int count = 0;
+			
+			if(rs.next()) {
+				count++;
+			}
+			
+			if(count!=0) {
+				
+				PreparedStatement ps3 = conn.prepareStatement("truncate table vendorCredentials");
+				int x3 = ps3.executeUpdate();
+				message = "Vendor Logout successul";
+			}
+	
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}

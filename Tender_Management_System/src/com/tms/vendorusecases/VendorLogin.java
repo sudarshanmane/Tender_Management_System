@@ -13,6 +13,13 @@ public class VendorLogin {
 	public static void main(String[] args) {
 		
 		try (Scanner sc = new Scanner(System.in)) {
+			
+			System.out.println("Enter 1 To Login As vendor");
+			
+			int num = sc.nextInt();		
+			
+			if(num ==1) {
+				
 			System.out.println("Enter vendor email");
 			String email = sc.next();
 			
@@ -27,7 +34,17 @@ public class VendorLogin {
 			} catch (TenderManagementSystemException e) {
 				e.printStackTrace();
 			}
-		}		
+			}else {
+				System.out.println("Invalid Number");
+			}
+		}catch(Exception e){
+			System.out.println("Invalid Number");
+		}
+			
+		
+				
 	}
 	
 }
+
+

@@ -100,10 +100,10 @@ public class AdministratorDaoImlp implements AdministratorDao{
 			return message;
 		
 		
-	}else {
-		throw new TenderManagementSystemException("Please Login As Administrator Before Proceed");
 	}
 	
+			}else {
+				throw new TenderManagementSystemException("Please Login As Administrator Before Proceed");
 			}
 		
 		} catch (SQLException e) {
@@ -147,11 +147,11 @@ public class AdministratorDaoImlp implements AdministratorDao{
 			
 			return list;
 			
-	}else {
-		throw new TenderManagementSystemException("Please Login As Administrator Before Proceed");
 	}
-	
+			}else {
+				throw new TenderManagementSystemException("Please Login As Administrator Before Proceed");
 			}
+			
 		
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -198,10 +198,10 @@ public class AdministratorDaoImlp implements AdministratorDao{
 			
 			return message;
 		
-		}else {
-			throw new TenderManagementSystemException("Please Login As Administrator Before Proceed");
 		}
 		
+				}else {
+					throw new TenderManagementSystemException("Please Login As Administrator Before Proceed");
 				}
 			
 			} catch (SQLException e) {
@@ -245,10 +245,10 @@ public class AdministratorDaoImlp implements AdministratorDao{
 			
 			return list;
 			
-		}else {
-			throw new TenderManagementSystemException("Please Login As Administrator Before Proceed");
 		}
 		
+				}else {
+					throw new TenderManagementSystemException("Please Login As Administrator Before Proceed");
 				}
 			
 			} catch (SQLException e) {
@@ -295,11 +295,11 @@ public class AdministratorDaoImlp implements AdministratorDao{
 				}
 			
 			return message;
-		}else {
-			throw new TenderManagementSystemException("Please Login As Administrator Before Proceed");
 		}
-		
+				}else {
+					throw new TenderManagementSystemException("Please Login As Administrator Before Proceed");
 				}
+				
 			
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -345,10 +345,10 @@ public class AdministratorDaoImlp implements AdministratorDao{
 			
 			return list;
 			
-		}else {
-			throw new TenderManagementSystemException("Please Login As Administrator Before Proceed");
 		}
 		
+				}else {
+					throw new TenderManagementSystemException("Please Login As Administrator Before Proceed");
 				}
 			
 			} catch (SQLException e) {
@@ -402,9 +402,9 @@ public class AdministratorDaoImlp implements AdministratorDao{
 			
 			return message;
 			
+	}
 	}else {
 		throw new TenderManagementSystemException("Please Login As Administrator Before Proceed");
-	}
 	}
 		
 		} catch (SQLException e) {
@@ -420,7 +420,7 @@ public class AdministratorDaoImlp implements AdministratorDao{
 	@Override
 	public String administratorLogOut() throws TenderManagementSystemException {
 		
-		String message = "We can not LogOut please LogIn Before LogOut";
+		String message = "Please login first to LogOut";
 		
 		try(Connection conn = GetConnection.provideConnection()) {
 			
@@ -437,9 +437,6 @@ public class AdministratorDaoImlp implements AdministratorDao{
 				
 			}
 			
-			if(message.equals("We cannot find your account")){
-				throw new TenderManagementSystemException(message);
-			}
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
