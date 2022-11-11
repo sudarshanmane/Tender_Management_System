@@ -1,0 +1,5 @@
+package com.tms.administratorusecases;
+
+public class AdministratorLogOut {
+
+}

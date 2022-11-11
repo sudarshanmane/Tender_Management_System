@@ -1,4 +1,4 @@
-Tender Management System :
+Tender Management System MySQL Tables :-
 
 create table Administrator(
 adminname varchar(20) not null,
@@ -8,7 +8,7 @@ adminpassword varchar(8) not null
 )
 
 
-create table tenders(
+create table tender(
 tendid int primary key auto_increment,
 tendname varchar(20) not null,
 bidamount int not null
@@ -23,4 +23,20 @@ venemail varchar(30),
 vencompany varchar(20) not null, 
 venpassword varchar(8),
 primary key(venid,venpassword,venemail )
+);
+
+create table bid(
+bidid int primary key,
+vendorid int,
+tenderid int,
+bidAmount int,
+
+)
+
+
+create table vendorCredentials(
+venid int primary key,
+venemail varchar(30),
+venpassword varchar(20),
+result varchar(10)
 );

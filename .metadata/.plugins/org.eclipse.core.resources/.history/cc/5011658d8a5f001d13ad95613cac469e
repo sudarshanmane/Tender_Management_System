@@ -1,0 +1,9 @@
+package com.tms.dao;
+
+import com.tms.exceptions.TenderManagementSystemException;
+
+public interface VendorDao {
+
+	public String vendorLogin(String email,String pasword) throws TenderManagementSystemException;
+	
+}

@@ -1,0 +1,154 @@
+package com.tms.dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.tms.dbconnection.GetConnection;
+import com.tms.exceptions.TenderManagementSystemException;
+import com.tms.model.Bid;
+import com.tms.model.Tender;
+import com.tms.model.Vendor;
+
+public class VendorDaoImpl implements VendorDao{
+
+	@Override
+	public String vendorLogin(String email, String password) throws TenderManagementSystemException {
+		
+			String message = "We cannot find your account please contact your admin";
+			
+			try(Connection conn = GetConnection.provideConnection()) {
+				
+				PreparedStatement ps = conn.prepareStatement("select * from vendor");
+				
+				ResultSet rs = ps.executeQuery();
+				
+				while(rs.next()) {
+					if(rs.getString("venemail").equals(email) && rs.getString("venpassword").equals(password)) {
+						message = "Login Successful";
+						break;
+					}
+				}
+				
+				if(message.equals("We cannot find your account please contact your admin")){
+					throw new TenderManagementSystemException(message);
+				}
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			
+			return message;
+		
+		
+	}
+	
+//	--------------------------------------------------------------------
+
+	@Override
+	public List<Tender> viewAllTenders() throws TenderManagementSystemException {
+		
+			List<Tender> list = new ArrayList<>();
+			
+			try(Connection conn = GetConnection.provideConnection()) {
+				
+				PreparedStatement ps = conn.prepareStatement("select * from tender");
+				
+				ResultSet rs = ps.executeQuery();
+				
+				while(rs.next()) {
+				list.add(new Tender(rs.getInt("tendid"), rs.getString("tendname"), rs.getInt("bidamount")));
+				}
+
+				
+				if(list.size()==0)
+					throw new TenderManagementSystemException("No tender found");
+				
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			
+			return list;
+	}
+	
+//	---------------------------------------------------------------------.
+	
+
+	@Override
+	public String acceptBids(Bid bid) throws TenderManagementSystemException {
+
+		String message = "Bid not accepted";
+		
+		try(Connection conn = GetConnection.provideConnection()) {
+			
+			PreparedStatement ps = conn.prepareStatement("insert into bid values(?,?,?,?)");
+			
+			ps.setInt(1, bid.getBidid());
+			ps.setInt(2, bid.getVendorid());
+			ps.setInt(3, bid.getTenderid());
+			ps.setInt(4, bid.getBidAmount());
+			
+			int x = ps.executeUpdate();
+			
+			if(x>0) {
+				message = "Bid Accepted Successfully";
+			}else {
+				throw new TenderManagementSystemException(message);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return message;
+	}
+
+//	-------------------------------------------------
+	
+	@Override
+	public String checkStatusOfBid(int vendorid) throws TenderManagementSystemException {
+
+	String message = "Tender not Selected";
+	
+		
+		try(Connection conn = GetConnection.provideConnection()) {
+			
+			PreparedStatement ps = conn.prepareStatement("select vendorid from bid where bidamount = (select min(bidamount) from bid)");
+		
+			ResultSet rs = ps.executeQuery();
+			
+			if(rs.next()) {
+				
+				int venid = rs.getInt("vendorid");
+				
+				PreparedStatement ps1 = conn.prepareStatement("select * from vendor where venid = ?");
+				ps1.setInt(1, venid);
+				
+		
+				ResultSet rs1 = ps1.executeQuery();
+				
+				if(rs1.next())	
+				{
+					if(rs1.getInt("venid") == vendorid) {
+						 message = "Congratulations your is Tender selected";
+					}
+				}
+					else
+					throw new TenderManagementSystemException(message);
+				
+			}else {
+				throw new TenderManagementSystemException(message);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return message;
+	}
+
+}

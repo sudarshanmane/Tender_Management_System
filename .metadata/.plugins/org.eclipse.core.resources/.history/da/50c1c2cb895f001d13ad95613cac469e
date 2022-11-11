@@ -1,0 +1,43 @@
+package com.tms.dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import com.tms.dbconnection.GetConnection;
+import com.tms.exceptions.TenderManagementSystemException;
+
+public class VendorDaoImpl implements VendorDao{
+
+	@Override
+	public String vendorLogin(String email, String password) throws TenderManagementSystemException {
+		
+			String message = "We cannot find your account please contact your admin";
+			
+			try(Connection conn = GetConnection.provideConnection()) {
+				
+				PreparedStatement ps = conn.prepareStatement("select * from vendor");
+				
+				ResultSet rs = ps.executeQuery();
+				
+				while(rs.next()) {
+					if(rs.getString("venemail").equals(email) && rs.getString("venpassword").equals(password))
+						break;
+					message = "Login Successful";
+				}
+				
+				if(message.equals("We cannot find your account please contact your admin")){
+					throw new TenderManagementSystemException(message);
+				}
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			
+			return message;
+		
+		
+	}
+
+}
